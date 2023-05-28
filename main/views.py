@@ -18,6 +18,25 @@ def order(request):
     return render(request, 'main/order.html', {'title': 'Список всех ордеров', 'a': a})
 
 
+
+def edit_detail(request, pk):
+    if request.method == 'POST':
+        detail = Details.objects.get(pk=pk)
+        detail_name = request.POST.get('detail_name')
+        count = request.POST.get('count')
+        delivery_country = request.POST.get('delivery_country')
+        
+        detail.DetailName = detail_name
+        detail.Count = count
+        detail.DeliveryCountry = delivery_country
+        detail.save()
+        
+        return redirect('/order'.format(pk=pk))
+# Замените '/your-redirect-url/' на ваш URL-адрес перенаправления
+        
+    return render(request, 'main/order.html')  # Замените 'your-template.html' на имя вашего HTML-шаблона
+
+
 def create(request):
     if request.method == 'POST':
         form = OrdersForm(request.POST)

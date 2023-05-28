@@ -98,45 +98,48 @@
             <h3 class="pc">Страна поставки</h3>
             <h3 class="pc">Дата</h3>
         </div>
-        {% for el in a %}
-        <details>
-          <summary class='btn'>
-            <div class="hr">
-              <h3 class="u-text u-text-default u-text-6">{{ el.OrderName }}</h3>
-            </div>
-          </summary>
-          <div style="display: flex;">
-            <div class="hr">
-              <h3 class="pp">{{ el.OrderDate }}</h3>
-            </div>
-        
-            {% for detail in el.Details.all %}
-            <div class="content_wrapper">
-              <div class="hr">
-                <h3 class="pp" id="b{{ detail.pk }}">{{ detail.DetailName }}</h3>
-                <h3 class="pp" id="ba{{ detail.pk }}">{{ detail.Count }}</h3>
-                <h3 class="pp" style="margin-right: 10px;" id="ban{{ detail.pk }}">{{ detail.DeliveryCountry }}</h3>
-        
-                <button type="button" style="height: 65px" class="edit" onclick="editDetail({{ detail.pk }})" id="editBtn{{ detail.pk }}">
-                  <span aria-hidden="true">&equiv;</span>
-                </button>
-        
-                <button type="button" class="close" onClick="deleteDetail({{ detail.pk }})" id="deleteBtn{{ detail.pk }}">
-                  <span aria-hidden="true">&nbsp;&times;</span>
-                </button>
-              </div>
-        
-              <div id="editForm{{ detail.pk }}" style="display: none;">
-                <input type="text" id="detailName{{ detail.pk }}" value="{{ detail.DetailName }}">
-                <input type="text" id="count{{ detail.pk }}" value="{{ detail.Count }}">
-                <input type="text" id="deliveryCountry{{ detail.pk }}" value="{{ detail.DeliveryCountry }}">
-                <button type="button" onclick="saveDetail({{ detail.pk }})">Сохранить</button>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </details>
-        {% endfor %}
+{% for el in a %}
+<details>
+  <summary class='btn'>
+    <div class="hr">
+      <h3 class="u-text u-text-default u-text-6">{{ el.OrderName }}</h3>
+    </div>
+  </summary>
+  <div style="display: flex;">
+    <div class="hr">
+      <h3 class="pp">{{ el.OrderDate }}</h3>
+    </div>
+
+    {% for detail in el.Details.all %}
+    <div class="content_wrapper">
+      <div class="hr">
+        <h3 class="pp" id="b{{ detail.pk }}">{{ detail.DetailName }}</h3>
+        <h3 class="pp" id="ba{{ detail.pk }}">{{ detail.Count }}</h3>
+        <h3 class="pp" style="margin-right: 10px;" id="ban{{ detail.pk }}">{{ detail.DeliveryCountry }}</h3>
+
+        <button type="button" style="height: 65px" class="edit" onclick="editDetail({{ detail.pk }})" id="editBtn{{ detail.pk }}">
+          <span aria-hidden="true">&equiv;</span>
+        </button>
+
+        <button type="button" class="close" onClick="deleteDetail({{ detail.pk }})" id="deleteBtn{{ detail.pk }}">
+          <span aria-hidden="true">&nbsp;&times;</span>
+        </button>
+      </div>
+
+      <div id="editForm{{ detail.pk }}" style="display: none;">
+        <form method="POST" action="/order/{{ detail.pk }}/">  <!-- Замените '/edit-detail/{{ detail.pk }}/' на ваш URL-адрес обработки редактирования детали -->
+            {% csrf_token %}
+            <input type="text" name="detail_name" value="{{ detail.DetailName }}">
+            <input type="text" name="count" value="{{ detail.Count }}">
+            <input type="text" name="delivery_country" value="{{ detail.DeliveryCountry }}">
+            <button type="submit">Сохранить</button>
+          </form>          
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</details>
+{% endfor %}
         <a href="/" class="u-btn u-btn-submit u-button-style">Выйти</a>
 
     </div>
