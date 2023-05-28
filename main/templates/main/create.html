@@ -70,12 +70,20 @@
             <form method="post" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form"
                   style="padding: 15px;">
                 {% csrf_token %}
-                <div class="u-form-group u-form-name u-label-none u-form-group-1">
-                    <label for="name-6797" class="u-label">Name</label>
-                    ID ордера
-                    {{ form.OrderName }}
-                </div>
+                <div>
+                    <div class="u-form-group u-form-name u-label-none u-form-group-1">
+                        <label for="name-6797" class="u-label">Name</label>
+                        ID ордера
+                        {{ form.OrderName }}
+                    </div>
 
+                    <div class="u-form-date u-form-group u-label-none u-form-group-5">
+                        Введите дату прибытия
+                        <label for="date-0756" class="u-label">Дата</label>
+                        {{ form.OrderDate }}
+                    </div>
+            </div>
+                
                 <div class="u-form-email u-form-group u-label-none u-form-group-2">
                     <label for="email-6797" class="u-label">Detail</label>
                     Название детали
@@ -94,11 +102,6 @@
                     <label for="text-3f76" class="u-label">Поле ввода</label>
                     Страна поставки
                     {{ form.DeliveryCountry }}
-                </div>
-                <div class="u-form-date u-form-group u-label-none u-form-group-5">
-                    Введите дату прибытия
-                    <label for="date-0756" class="u-label">Дата</label>
-                    {{ form.OrderDate }}
                 </div>
 
 

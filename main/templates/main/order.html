@@ -24,7 +24,7 @@
             margin-left: 150px;
             font-size: 20px;
             text-align: left;
-            padding-left: 200px;
+            padding-left: 100px;
         }
 
         .first {
@@ -99,39 +99,51 @@
             <h3 class="pc">Дата</h3>
         </div>
         {% for el in a %}
-    <details>
-      <summary class='btn'>
+        <details>
+          <summary class='btn'>
             <div class="hr">
-                <h3 class="u-text u-text-default u-text-6">{{ el.OrderName }}</h3>
+              <h3 class="u-text u-text-default u-text-6">{{ el.OrderName }}</h3>
             </div>
-      </summary>
-
-        {% for detail in el.Details.all %}
+          </summary>
+          <div style="display: flex;">
+            <div class="hr">
+              <h3 class="pp">{{ el.OrderDate }}</h3>
+            </div>
+        
+            {% for detail in el.Details.all %}
             <div class="content_wrapper">
-                <div class="hr">
-                    <h3 class="pp">{{ detail.DetailName }}</h3>
-                    <h3 class="pp">{{ detail.Count }}</h3>
-                    <h3 class="pp">{{ detail.DeliveryCountry }}</h3>
-                    <h3 class="pp">{{ el.OrderDate }}</h3>
-                    <a href="/orders/change/{{ detail.pk }}"><button type="button" style="height: 65px" class="close">
-                        <span aria-hidden="true">&equiv;</span>
-                    </button>
-                    </a>
-                    <button type="button" class="close" onClick="deleteDetail({{ detail.pk }})">
-                        <span aria-hidden="true">&nbsp;&times;</span>
-                    </button>
-                </div>
-                {% endfor %}
+              <div class="hr">
+                <h3 class="pp" id="b{{ detail.pk }}">{{ detail.DetailName }}</h3>
+                <h3 class="pp" id="ba{{ detail.pk }}">{{ detail.Count }}</h3>
+                <h3 class="pp" style="margin-right: 10px;" id="ban{{ detail.pk }}">{{ detail.DeliveryCountry }}</h3>
+        
+                <button type="button" style="height: 65px" class="edit" onclick="editDetail({{ detail.pk }})" id="editBtn{{ detail.pk }}">
+                  <span aria-hidden="true">&equiv;</span>
+                </button>
+        
+                <button type="button" class="close" onClick="deleteDetail({{ detail.pk }})" id="deleteBtn{{ detail.pk }}">
+                  <span aria-hidden="true">&nbsp;&times;</span>
+                </button>
+              </div>
+        
+              <div id="editForm{{ detail.pk }}" style="display: none;">
+                <input type="text" id="detailName{{ detail.pk }}" value="{{ detail.DetailName }}">
+                <input type="text" id="count{{ detail.pk }}" value="{{ detail.Count }}">
+                <input type="text" id="deliveryCountry{{ detail.pk }}" value="{{ detail.DeliveryCountry }}">
+                <button type="button" onclick="saveDetail({{ detail.pk }})">Сохранить</button>
+              </div>
             </div>
-    </details>
-
-
+            {% endfor %}
+          </div>
+        </details>
         {% endfor %}
         <a href="/" class="u-btn u-btn-submit u-button-style">Выйти</a>
 
     </div>
 
 </section>
+
+
 
 
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c230">
@@ -146,7 +158,50 @@
     <button type="submit" class="hidden"></button>
 </form>
 
+
+
 <script>
+
+
+function editDetail(detailId) {
+  // Скрыть текстовые элементы
+  document.getElementById('b' + detailId).style.display = 'none';
+  document.getElementById('ba' + detailId).style.display = 'none';
+  document.getElementById('ban' + detailId).style.display = 'none';
+
+  // Скрыть кнопки "Редактировать" и "Удалить"
+  document.getElementById('editBtn' + detailId).style.display = 'none';
+  document.getElementById('deleteBtn' + detailId).style.display = 'none';
+
+  // Отобразить форму редактирования
+  document.getElementById('editForm' + detailId).style.display = 'block';
+}
+
+function saveDetail(detailId) {
+  // Получить значения из полей ввода
+  var detailName = document.getElementById('detailName' + detailId).value;
+  var count = document.getElementById('count' + detailId).value;
+  var deliveryCountry = document.getElementById('deliveryCountry' + detailId).value;
+
+  // Обновить текстовые элементы с новыми значениями
+  document.getElementById('b' + detailId).textContent = detailName;
+  document.getElementById('ba' + detailId).textContent = count;
+  document.getElementById('ban' + detailId).textContent = deliveryCountry;
+
+  // Скрыть форму редактирования
+  document.getElementById('editForm' + detailId).style.display = 'none';
+
+  // Показать текстовые элементы
+  document.getElementById('b' + detailId).style.display = 'block';
+  document.getElementById('ba' + detailId).style.display = 'block';
+  document.getElementById('ban' + detailId).style.display = 'block';
+
+  // Показать кнопки "Редактировать" и "Удалить"
+  document.getElementById('editBtn' + detailId).style.display = 'block';
+  document.getElementById('deleteBtn' + detailId).style.display = 'block';
+}
+
+
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {

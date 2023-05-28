@@ -10,6 +10,8 @@ from django.http import JsonResponse
 def index(request):
     return render(request, 'main/index.html')
 
+def test(request):
+    return render(request, 'main/test.html')
 
 def order(request):
     a = Orders.objects.all()
@@ -20,6 +22,7 @@ def create(request):
     if request.method == 'POST':
         form = OrdersForm(request.POST)
         if form.is_valid():
+            
             if Orders.objects.filter(OrderName=form.cleaned_data['OrderName']).count() == 0:
                 order = Orders(OrderName=form.cleaned_data['OrderName'],
                                OrderDate=form.cleaned_data['OrderDate'])
@@ -34,9 +37,10 @@ def create(request):
             order.save()
         
     form = OrdersForm()
-
+    a = Orders.objects.get(id=14)
     context = {
-        'form': form
+        'form': form,
+        'a': a
     }
     return render(request, 'main/create.html', context)
 

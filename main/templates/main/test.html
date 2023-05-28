@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+</head>
+
+<body>
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>Заголовок колонки 1</th>
+                <th>Заголовок колонки 2</th>
+                <!-- Добавьте заголовки для остальных колонок -->
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Значение 1</td>
+                <td>Значение 2</td>
+                <!-- Добавьте ячейки с данными для остальных колонок -->
+                <td><button class="edit-btn">Редактировать</button></td>
+            </tr>
+            <!-- Добавьте строки с данными для остальных записей -->
+        </tbody>
+    </table>
+    
+    <script>
+        // Получаем все кнопки "Редактировать" и добавляем обработчик события
+        var editButtons = document.getElementsByClassName('edit-btn');
+        for (var i = 0; i < editButtons.length; i++) {
+            editButtons[i].addEventListener('click', function(event) {
+                var row = event.target.parentNode.parentNode;
+                var cells = row.getElementsByTagName('td');
+                
+                // Преобразование данных в ячейках таблицы в input поля
+                for (var j = 0; j < cells.length - 1; j++) {
+                    var value = cells[j].innerText;
+                    cells[j].innerHTML = '<input type="text" value="' + value + '">';
+                }
+                
+                // Изменение текста кнопки на "Сохранить"
+                event.target.innerText = 'Сохранить';
+                
+                // Добавление класса для обозначения активного режима редактирования
+                row.classList.add('editing');
+            });
+        }
+    
+        // Добавляем обработчик события для кнопок "Сохранить"
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('edit-btn')) {
+                var row = event.target.parentNode.parentNode;
+                var cells = row.getElementsByTagName('td');
+                
+                // Преобразование input полей обратно в текстовые ячейки
+                for (var i = 0; i < cells.length - 1; i++) {
+                    var input = cells[i].querySelector('input');
+                    var value = input.value;
+                    var textNode = document.createTextNode(value);
+                    cells[i].innerHTML = '';
+                    cells[i].appendChild(textNode);
+                }
+                
+                // Изменение текста кнопки на "Редактировать"
+                event.target.innerText = 'Редактировать';
+                
+                // Удаление класса активного режима редактирования
+                row.classList.remove('editing');
+            }
+        });
+    </script>
+</body>
+</html>
