@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="1 home work, to do list">
+    <meta name="description" content="">
+    <title>Главная</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'nicepage.css' %}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'jquery.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'nicepage.js' %}" defer=""></script>
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Главная">
+    <meta property="og:type" content="website">
+</head>
+<body data-home-page="Главная.html" data-home-page-title="Главная" class="u-body u-xl-mode" data-lang="ru">
+<header class="u-clearfix u-header u-header" id="sec-d045">
+    <div class="u-clearfix u-sheet u-sheet-1"></div>
+</header>
+
+
+<section class="u-clearfix u-section-1" id="sec-a943">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <a href="/">
+            <img class="u-image u-image-contain u-image-default u-image-1"
+                 src="{% static 'img/2560px-Air_Astana_logo.svg.png' %}" alt="" data-image-width="2560" data-image-height="625">
+        </a>
+        <div class="u-form u-form-1">
+            <form method="post" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form"
+                  style="padding: 15px;">
+                {% csrf_token %}
+
+                <div class="u-form-email u-form-group u-label-none u-form-group-2">
+                    <label for="email-6797" class="u-label">Detail</label>
+                    {{ form.DetailName }}
+
+                </div>
+
+                <div class="u-form-group u-form-number u-form-number-layout-number u-label-none u-form-group-3">
+                    <label for="number-aed7" class="u-label">Число</label>
+                    <div class="u-input-row">
+                        {{ form.Count }}
+
+                    </div>
+                </div>
+                <div class="u-form-group u-label-none u-form-group-4">
+                    <label for="text-3f76" class="u-label">Поле ввода</label>
+                    {{ form.DeliveryCountry }}
+                </div>
+                <div class="u-align-left u-form-group u-form-submit u-form-group-6">
+                    <button type="submit" class="u-btn u-btn-submit u-button-style">
+                        Сохранить
+                    </button>
+                </div>
+                <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
+
+            </form>
+            <a href="/order" class="u-btn u-btn-submit u-button-style">Выйти</a>
+
+        </div>
+    </div>
+</section>
+
+
+<footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c230">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Team NIS for Air Astana</p>
+    </div>
+</footer>
+
+</body>
+</html>
