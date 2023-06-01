@@ -7,34 +7,42 @@ from django.http import JsonResponse
 
 
 
+
 def index(request):
     return render(request, 'main/index.html')
 
 def test(request):
     return render(request, 'main/test.html')
 
+
 def order(request):
-    a = Orders.objects.all()
-    return render(request, 'main/order.html', {'title': 'Список всех ордеров', 'a': a})
+    if request.method == 'GET':
+        a = Orders.objects.all()
+        form = OrdersForm()
+        return render(request, 'main/order.html', {'title': 'Список всех ордеров', 'form': form, 'a': a})
 
-
-
-def edit_detail(request, pk):
     if request.method == 'POST':
-        detail = Details.objects.get(pk=pk)
-        detail_name = request.POST.get('detail_name')
-        count = request.POST.get('count')
-        delivery_country = request.POST.get('delivery_country')
-        
-        detail.DetailName = detail_name
-        detail.Count = count
-        detail.DeliveryCountry = delivery_country
-        detail.save()
-        
-        return redirect('/order'.format(pk=pk))
-# Замените '/your-redirect-url/' на ваш URL-адрес перенаправления
-        
-    return render(request, 'main/order.html')  # Замените 'your-template.html' на имя вашего HTML-шаблона
+        form = OrdersForm(request.POST)
+        if form.is_valid():
+            if Orders.objects.filter(OrderName=form.cleaned_data['OrderName']).count() == 0:
+                order = Orders(OrderName=form.cleaned_data['OrderName'],
+                               OrderDate=form.cleaned_data['OrderDate'])
+                order.save()
+            else:
+                order = Orders.objects.get(OrderName=form.cleaned_data['OrderName'])
+            detail = Details(DetailName=form.cleaned_data['DetailName'], Count=form.cleaned_data['Count'],
+                             DeliveryCountry=form.cleaned_data['DeliveryCountry']
+                             )
+            detail.save()
+            order.save()
+            order.Details.add(detail)
+            return redirect('/')
+        else:
+            print(form.errors)
+            a = Orders.objects.all()
+            form = OrdersForm()
+            return render(request, 'main/order.html', {'title': 'Список всех ордеров', 'form': form, 'a': a})
+
 
 
 def create(request):
@@ -56,12 +64,30 @@ def create(request):
             order.save()
         
     form = OrdersForm()
-    a = Orders.objects.get(id=14)
+
     context = {
         'form': form,
-        'a': a
     }
     return render(request, 'main/create.html', context)
+
+
+def edit_detail(request, pk):
+    if request.method == 'POST':
+        detail = Details.objects.get(pk=pk)
+        detail_name = request.POST.get('detail_name')
+        count = request.POST.get('count')
+        delivery_country = request.POST.get('delivery_country')
+        
+        detail.DetailName = detail_name
+        detail.Count = count
+        detail.DeliveryCountry = delivery_country
+        detail.save()
+        
+        return redirect('/order'.format(pk=pk))
+# Замените '/your-redirect-url/' на ваш URL-адрес перенаправления
+        
+    return render(request, 'main/order.html')  # Замените 'your-template.html' на имя вашего HTML-шаблона
+
 
 
 @csrf_exempt

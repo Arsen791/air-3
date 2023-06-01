@@ -57,33 +57,13 @@
 <body data-home-page="Главная.html" data-home-page-title="Главная" class="u-body u-xl-mode" data-lang="ru">
 <header class="u-clearfix u-container-align-center u-header u-palette-1-base u-sticky u-sticky-f6b6 u-header" id="sec-d045"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
-          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</symbol>
-</defs></svg>
-            </a>
-          </div>
+
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="create">Добавление ордера</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="order">Список ордеров</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="crship">Добавление шипинга</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="shiplist">Список шипингов</a>
 </li></ul>
-          </div>
-          <div class="u-custom-menu u-nav-container-collapse">
-            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-              <div class="u-sidenav-overflow">
-                <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/Главная.html">Добавление ордера</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/О-нас.html">Список ордеров</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/Контакты.html">Добавление шипинга</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link">Список шипингов</a>
-</li></ul>
-              </div>
-            </div>
-            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
       </div></header>
@@ -98,48 +78,74 @@
             <h3 class="pc">Страна поставки</h3>
             <h3 class="pc">Дата</h3>
         </div>
-{% for el in a %}
-<details>
-  <summary class='btn'>
-    <div class="hr">
-      <h3 class="u-text u-text-default u-text-6">{{ el.OrderName }}</h3>
-    </div>
-  </summary>
-  <div style="display: flex;">
-    <div class="hr">
-      <h3 class="pp">{{ el.OrderDate }}</h3>
-    </div>
+        {% for el in a %}
+        <details>
+          <summary class='btn'>
+            <div class="hr">
+              <h3 class="u-text u-text-default u-text-6">{{ el.OrderName }}</h3>
+            </div>
+          </summary>
+          <div style="display: flex;">
+            <div class="hr">
+              <h3 class="pp">{{ el.OrderDate }}</h3>
+            </div>
+            <div>
+                <div style="display: block;">
+                    {% for detail in el.Details.all %}
+                
+                    <div class="content_wrapper">
+                        <div class="hr">
+                            <h3 class="pp" id="b{{ detail.pk }}">{{ detail.DetailName }}</h3>
+                            <h3 class="pp" id="ba{{ detail.pk }}">{{ detail.Count }}</h3>
+                            <h3 class="pp" style="margin-right: 10px;" id="ban{{ detail.pk }}">{{ detail.DeliveryCountry }}</h3>
+                    
+                            <button type="button" style="height: 65px" class="edit" onclick="editDetail({{ detail.pk }})" id="editBtn{{ detail.pk }}">
+                            <span aria-hidden="true">&equiv;</span>
+                            </button>
+                    
+                            <button type="button" class="close" onClick="deleteDetail({{ detail.pk }})" id="deleteBtn{{ detail.pk }}">
+                            <span aria-hidden="true">&nbsp;&times;</span>
+                            </button>
+                        </div>
+                    
+                        <div id="editForm{{ detail.pk }}" style="display: none;">
+                            <form method="POST" action="/order/{{ detail.pk }}/">  <!-- Замените '/edit-detail/{{ detail.pk }}/' на ваш URL-адрес обработки редактирования детали -->
+                                {% csrf_token %}
+                                <input type="text" name="detail_name" value="{{ detail.DetailName }}">
+                                <input type="text" name="count" value="{{ detail.Count }}">
+                                <input type="text" name="delivery_country" value="{{ detail.DeliveryCountry }}">
+                                <button type="submit">Сохранить</button>
+                            </form>          
+                        </div>
+                    </div>
+                
+                    {% endfor %}
+                </div>
+                <button type="button" style="height: 65px" class="edit" onclick="createOrder({{ order.pk }})" id="createBtn{{ order.pk }}">
+                    <span class="create-icon">+</span>
+                </button>
+                <div style="display:block; padding: 15px;" id="forma{{ order.pk }}" >
+                    <form action="order" method="POST"  novalidate >
+                        {% csrf_token %}
+                        <div style="display: flex;"> <div style="margin-left: 230px;display: flex; align-items: center; justify-content: center;">
+                            {{ form.DetailName }}</div>
+                        <div style="margin-left: 100px;display: flex; align-items: center; justify-content: center;">
+                            {{ form.Count }}</div>
+                        <div style="margin-left: 100px; margin-right: 10px;display: flex; align-items: center; justify-content: center;">
+                            {{ form.DeliveryCountry }}</div>
+                            <input type="hidden" name="OrderName" value="{{ el.OrderName }}">
+                            <input type="hidden" name="OrderDate" value="{{ el.OrderDate|date:'Y-m-d' }}" id="id_OrderDate">
 
-    {% for detail in el.Details.all %}
-    <div class="content_wrapper">
-      <div class="hr">
-        <h3 class="pp" id="b{{ detail.pk }}">{{ detail.DetailName }}</h3>
-        <h3 class="pp" id="ba{{ detail.pk }}">{{ detail.Count }}</h3>
-        <h3 class="pp" style="margin-right: 10px;" id="ban{{ detail.pk }}">{{ detail.DeliveryCountry }}</h3>
+                            <button type="submit" class="u-btn u-btn-submit u-button-style" style=" display: flex; align-items: center; justify-content: center;"><span class="tick-icon">&#10004;</span></button>
+                        </div>
+                        <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
+                    </form>
+                </div>
+            </div>
+          </div>
+        </details>
+        {% endfor %}
 
-        <button type="button" style="height: 65px" class="edit" onclick="editDetail({{ detail.pk }})" id="editBtn{{ detail.pk }}">
-          <span aria-hidden="true">&equiv;</span>
-        </button>
-
-        <button type="button" class="close" onClick="deleteDetail({{ detail.pk }})" id="deleteBtn{{ detail.pk }}">
-          <span aria-hidden="true">&nbsp;&times;</span>
-        </button>
-      </div>
-
-      <div id="editForm{{ detail.pk }}" style="display: none;">
-        <form method="POST" action="/order/{{ detail.pk }}/">  <!-- Замените '/edit-detail/{{ detail.pk }}/' на ваш URL-адрес обработки редактирования детали -->
-            {% csrf_token %}
-            <input type="text" name="detail_name" value="{{ detail.DetailName }}">
-            <input type="text" name="count" value="{{ detail.Count }}">
-            <input type="text" name="delivery_country" value="{{ detail.DeliveryCountry }}">
-            <button type="submit">Сохранить</button>
-          </form>          
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</details>
-{% endfor %}
         <a href="/" class="u-btn u-btn-submit u-button-style">Выйти</a>
 
     </div>
@@ -147,20 +153,11 @@
 </section>
 
 
-
-
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c230">
     <div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">Team NIS for Air Astana</p>
     </div>
 </footer>
-
-<form method="post" id="myForm">
-    {% csrf_token %}
-    <!-- Ваши поля формы здесь -->
-    <button type="submit" class="hidden"></button>
-</form>
-
 
 
 <script>
@@ -178,6 +175,7 @@ function editDetail(detailId) {
 
   // Отобразить форму редактирования
   document.getElementById('editForm' + detailId).style.display = 'block';
+  document.getElementById('forma' + detailId).style.display = 'block';
 }
 
 function saveDetail(detailId) {
@@ -204,6 +202,12 @@ function saveDetail(detailId) {
   document.getElementById('deleteBtn' + detailId).style.display = 'block';
 }
 
+
+function createOrder(orderId) {
+        var formId = "forma" + orderId;
+        var form = document.getElementById(formId);
+        form.style.display = "block";
+    }
 
     function getCookie(name) {
         let cookieValue = null;
@@ -242,8 +246,7 @@ function saveDetail(detailId) {
     }
 
 </script>
-<!-- Подключение библиотеки jQuery с помощью CDN-сервера -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
 </body>

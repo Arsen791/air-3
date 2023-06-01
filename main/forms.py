@@ -27,30 +27,34 @@ class AirportsForm(forms.ModelForm):
 
 class OrdersForm(forms.Form):
     OrderName = forms.IntegerField(widget=forms.NumberInput(attrs={
-        'class': 'u-border-1 u-border-grey-30 u-input u-input-rectangle',
+
         'placeholder': '',
-        'id': 'name-6797',
+        'id': 'id_OrderName',
         'min': '1',
         'value': '1',
         'step': '1',
+ 
     }))
     DetailName = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
-        'class': 'u-border-1 u-border-grey-30 u-input u-input-rectangle',
+
         'placeholder': '',
-        'id': 'name-6797',
+        'id': 'id_DetailName',
+        'style': 'width: 100px',
     }))
     Count = forms.IntegerField(widget=forms.NumberInput(attrs={
-        'class': 'u-border-1 u-border-grey-30 u-input u-input-rectangle',
+
         'placeholder': '',
-        'id': 'number-aed7',
+        'id': 'id_Count',
         'min': '1',
         'value': '1',
         'step': '1',
+        'style': 'width: 50px',
     }))
     DeliveryCountry = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
-        'class': 'u-border-1 u-border-grey-30 u-input u-input-rectangle',
+
         'placeholder': '',
-        'id': 'text-3f76',
+        'id': 'id_DeliveryCountry',
+        'style': 'width: 100px',
     }))
 
     OrderDate = forms.DateField(
@@ -59,24 +63,26 @@ class OrdersForm(forms.Form):
             attrs={
                 "placeholder": "",
                 "type": "date",
-                "class": "form-control"
+                "class": "form-control",
+                "id": "id_OrderDate",
             }
         ),
         label="",
-        validators=[MinValueValidator(limit_value=date.today())]
+
     )
+
 
 
 class DetailForm(forms.Form):
     DetailName = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
         'class': 'u-border-1 u-border-grey-30 u-input u-input-rectangle',
         'placeholder': 'Название Детали',
-        'id': 'name-6797',
+        'id': 'id_DetailName',
     }))
     Count = forms.IntegerField(widget=forms.NumberInput(attrs={
         'class': 'u-border-1 u-border-grey-30 u-input u-input-rectangle',
         'placeholder': '',
-        'id': 'number-aed7',
+        'id': 'id_Count',
         'min': '1',
         'value': '1',
         'step': '1',
@@ -84,7 +90,7 @@ class DetailForm(forms.Form):
     DeliveryCountry = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
         'class': 'u-border-1 u-border-grey-30 u-input u-input-rectangle',
         'placeholder': 'Страна поставки',
-        'id': 'text-3f76',
+        'id': 'id_DeliveryCountry',
     }))
 
 

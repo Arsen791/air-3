@@ -11,5 +11,6 @@ urlpatterns = [
     path('shiplist', views.shiplist, name='shiplist'),
     path('orders/delete/<int:pk>/', views.delete_order_detail, name='delete_my_model'),
     path('orders/change/<int:pk>/', views.change_order_detail),
-    path('order/<int:pk>/', views.edit_detail, name='edit_detail')
+    path('order/<int:pk>/', views.edit_detail, name='edit_detail'),
+    
 ]
