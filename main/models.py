@@ -70,8 +70,6 @@ class ShippingDetails(models.Model):
 
 class Shipping(models.Model):
     ShippingName = models.CharField('Name of Shipping', max_length=50)
-    ShippingDate = models.DateField('Date when order came')
-    DeliveryCountry = models.CharField('Delivery Country', max_length=100)
     Details = models.ManyToManyField(ShippingDetails)
 
 

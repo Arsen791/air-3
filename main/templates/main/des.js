@@ -1,150 +1,67 @@
+def crship(request):
+    if request.method == 'POST':
+        print('error')
+        form = ShippingForm(request.POST)
+        name = request.POST.get('ShippingName', '')
+        country = request.POST.get('DeliveryCountry', '')
+        day = request.POST.get('ShippingDate_day', '')
+        month = request.POST.get('ShippingDate_month', '')
+        year = request.POST.get('ShippingDate_year', '')
+        if len(day) < 2:
+            day = '0' + day
+        date = year + '-' + month + '-' + day
 
-let a = document.querySelector('#button1')
-let  b = document.querySelector('.zero');
-let  r = document.querySelector('.content');
+        is_present = Shipping.objects.filter(ShippingName=name).exists()
 
+        if not is_present:
+            shipping = Shipping(ShippingName=name,
+                                ShippingDate=date,
+                                DeliveryCountry=country)
+            shipping.save()
 
+            details = request.POST.getlist("checkbox_service")
+            details = [int(i) for i in details]
+            current_details = Details.objects.values_list('pk')
+            details_count = request.POST.getlist('detail_counts')
 
-a.addEventListener('click', (e) => {
-    
-    let item = document.createElement('div')
-    let textw =  document.querySelector('#name').value;
-    if(textw.length < 3) {
-        
-      alert("Вы некорректно ввели задача, должно быть от 3 символов")
-      return
-  }
-    let newPost = document.createElement('h4');   
-    newPost.textContent = textw;
-    newPost.style.color = 'black';
-    newPost.style.fontFamily = 'Times New Roman, Times, serif'
-    let newTask = document.createElement('div');
-    newPost.classList.add('st');
-    newTask.innerHTML = `
-    <img src="img/remove.png" style="height: 25px; width: 20px;" class="removeBut" id ="remove">
-    
-    `
-    newTask.addEventListener('click', handleRemove);
-    function handleRemove(){
-        item.parentElement.removeChild(item);
-        
+            count_indexes_in_detail = []
+
+            for i in range(len(current_details)):
+                if current_details[i][0] in details:
+                    count_indexes_in_detail.append(str(i))
+
+            details_count = [details_count[i] for i in range(len(details_count)) if str(i) in count_indexes_in_detail]
+
+            print(details)
+            print(current_details)
+            print(details_count)
+            print(count_indexes_in_detail)
+
+            for i in range(len(details)):
+                detail = Details.objects.get(pk=details[i])
+                detail.Count -= int(details_count[i])
+                if detail.Count == 0:
+                    detail.delete()
+                detail.save()
+
+                sh_detail = ShippingDetails(DetailName=detail.DetailName,
+                                Count=details_count[i])
+                sh_detail.save()
+                shipping.Details.add(sh_detail)
+                shipping.save()
+
+        return redirect('shiplist')
+
+    form = ShippingForm()
+    filter_value = request.GET.get('filter')
+    orders = Orders.objects.all()
+    print("Filter value:", filter_value)  # Отладочное сообщение
+    if filter_value:
+        orders = orders.filter(OrderName=filter_value)
+    print("Filtered orders:", orders) 
+    context = {
+        'form': form,
+        'orders': orders,
+        'filter_value': filter_value
     }
-
-    item.classList.add('item'); 
-    
-   
-
-    let vip = document.createElement('div')
-    newPost.append(vip)
-    vip.classList.add('do')
-    vip.innerHTML = `
-        <img src="img/done2.png" style="height: 25px; width: 20px;" class="donebut" id ="done">
-        `
-    vip.addEventListener('click', ner);
-    let vipo = true
-    function ner(){
-        if (vipo === true){
-        newPost.style.setProperty("text-decoration", "line-through");
-        vipo = false;
-        vip.innerHTML = `
-        <img src="img/done1.png" style="height: 25px; width: 20px;" class="donebut" id ="done">
-        `
-        }
-        else if (vipo === false){
-            newPost.style.setProperty('text-decoration', 'none');  
-            vipo = true
-            vip.innerHTML = `
-        <img src="img/done2.png" style="height: 25px; width: 20px;" class="donebut" id ="done">
-        `
-        }
-    }
-
-    let edite = document.createElement('div');
-    edite.innerHTML = `
-    <img src="img/edit.png" style="height: 25px; width: 20px;" class="editbut" id ="edit">
-    `
-    edite.addEventListener('click',rodek );
-    function rodek(){ 
-        
-        let input = document.createElement('input');
-        if(input.length < 3) {
-        
-          alert("Вы некорректно ввели задача, должно быть от 3 символов")
-          return
-      }
-        item.append(input)  
-        input.type = 'text'
-        input.value = newPost.textContent
-        
-        item.insertBefore(input, newPost)
-        item.removeChild(newPost);
-        
-
-        let save = document.createElement('div')
-        item.append(save)
-        save.innerHTML = `
-        <img src="img/done.png" style="height: 25px; width: 20px;" class="donebut" id ="done">
-        `
-        
-        save.addEventListener('click', op);
-        function op(){
-          
-                newPost.textContent = input.value
-                item.insertBefore(newPost, input)
-                
-                input.parentElement.removeChild(input);
-                save.parentElement.removeChild(save);
-                newPost.append(vip)
-        }     
-       
-    }
-
-   
-    
-    let change = document.createElement('div');
-    change.innerHTML = `
-    <img src="img/change.png" style="height: 25px; width: 20px;" class="changbut" id ="change">
-    `
-    change.addEventListener('click', olik);
-    
-    
-    function olik(){
-      if (newPost.style.color === 'black'){
-        newPost.style.color = 'red'
-      }else if (newPost.style.color === 'red'){
-        newPost.style.color = 'green'}
-      else if (newPost.style.color === 'green'){
-        newPost.style.color = 'blue'}
-      else if (newPost.style.color === 'blue'){
-        newPost.style.color = 'black'
-      }  
-        
-    }
-    
-    let fonti = document.createElement('div');
-    fonti.innerHTML = `
-    <img src="img/font.png" style="height: 25px; width: 20px;" class="fontbut" id ="fonti">
-    `
-    fonti.addEventListener('click', fork);
-    
-    
-    function fork(){
-      if (newPost.style.fontFamily === 'Times New Roman, Times, serif'){
-        newPost.style.fontFamily = 'Verdana, Geneva, Tahoma, sans-serif'
-      }else if (newPost.style.fontFamily === 'Verdana, Geneva, Tahoma, sans-serif'){
-        newPost.style.fontFamily = 'Open Sans, sans-serif'
-      }else if (newPost.style.fontFamily === 'Open Sans, sans-serif'){
-        newPost.style.fontFamily = 'Times New Roman, Times, serif'
-      }
-       
-        
-    }
-
-    item.append(newPost)
-    item.append(newTask)
-    item.append(edite)
-    item.append(change)
-    item.append(fonti)
-    b.appendChild(item)
-
-})
+    return render(request, 'main/crship.html', context)

@@ -105,24 +105,6 @@ class ShippingForm(forms.Form):
         'step': '1',
     }))
 
-    DeliveryCountry = forms.IntegerField(widget=forms.NumberInput(attrs={
-        'class': 'u-border-1 u-border-grey-30 u-input u-input-rectangle',
-        'placeholder': '',
-        'id': 'text-3f76',
-        'min': '1',
-        'value': '1',
-        'step': '1',
-    }))
-
-    ShippingDate = forms.DateField(widget=forms.SelectDateWidget(attrs={
-        'class': 'u-border-1 u-border-grey-30 u-input u-input-rectangle',
-        'placeholder': 'ММ/ДД/ГГ',
-        'id': 'date-0756',
-        'data - date - format': 'mm/dd/yyyy',
-        'required': '',
-    }),
-        validators=[MinValueValidator(limit_value=date.today())]
-    )
 
 
 
