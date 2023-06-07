@@ -24,6 +24,36 @@
     <meta property="og:title" content="Главная">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <style>
+        table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #000;
+  width: 200px;
+}
+.table-container {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-container th,
+    .table-container td {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .table-container th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .table-container tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    </style>
 </head>
 <body data-home-page="Главная.html" data-home-page-title="Главная" class="u-body u-xl-mode" data-lang="ru">
 <header class="u-clearfix u-container-align-center u-header u-palette-1-base u-sticky u-sticky-f6b6 u-header" id="sec-d045"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
@@ -67,51 +97,64 @@
                  src="static/img/2560px-Air_Astana_logo.svg.png" alt="" data-image-width="2560" data-image-height="625">
         </a>
         <div class="u-form u-form-1">
-            <form method="post" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form"
-                  style="padding: 15px;">
+            <form method="post" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px; display: block;" >
                 {% csrf_token %}
+                <table class="table-container">
+                    <tr>
+                        <td >
+                            ID ордера
+                        </td>
+                        <td>
+                            {{ form.OrderName }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            Введите дату прибытия
+
+                        </td>
+                        <td>
+                            {{ form.OrderDate }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            
+                            Название детали
+                        </td>
+                        <td>
+                            {{ form.DetailName }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            
+                            Количества
+                        </td>
+                        <td>
+                            {{ form.Count }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+  
+                            Страна поставки
+                        </td>
+                        <td>
+                            {{ form.DeliveryCountry }}
+                        </td>
+                    </tr>
+
+
+                </table>
                 <div>
-                    <div class="u-form-group u-form-name u-label-none u-form-group-1">
-                        <label for="name-6797" class="u-label">Name</label>
-                        ID ордера
-                        {{ form.OrderName }}
-                    </div>
-
-                    <div class="u-form-date u-form-group u-label-none u-form-group-5">
-                        Введите дату прибытия
-                        <label for="date-0756" class="u-label">Дата</label>
-                        {{ form.OrderDate }}
-                    </div>
-            </div>
-                
-                <div class="u-form-email u-form-group u-label-none u-form-group-2">
-                    <label for="email-6797" class="u-label">Detail</label>
-                    Название детали
-                    {{ form.DetailName }}
-
-                </div>
-
-                <div class="u-form-group u-form-number u-form-number-layout-number u-label-none u-form-group-3">
-                    <label for="number-aed7" class="u-label">Число</label>
-                    <div class="u-input-row">
-                        {{ form.Count }}
-
-                    </div>
-                </div>
-                <div class="u-form-group u-label-none u-form-group-4">
-                    <label for="text-3f76" class="u-label">Поле ввода</label>
-                    Страна поставки
-                    {{ form.DeliveryCountry }}
-                </div>
-
-                <div class="u-align-left u-form-group u-form-submit u-form-group-6">
                     <button type="submit" class="u-btn u-btn-submit u-button-style">
                         Создать
                     </button>
                 </div>
                 <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-
             </form>
+            
             <a href="/" class="u-btn u-btn-submit u-button-style">Выйти</a>
 
         </div>

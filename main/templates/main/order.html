@@ -10,6 +10,19 @@
             border: 1px solid #000;
             padding-left: 100px;
             text-align: center;
+            width: 1000px;
+            
+        }
+
+        .r {
+            text-align: center;
+            display: flex;
+            margin-left: 5px;
+            width: 200px;
+            border: 1px solid #000;
+            padding-left: 100px;
+            text-align: center;
+            
         }
 
         .pc {
@@ -21,15 +34,78 @@
         }
 
         .pp {
-            margin-left: 150px;
+
             font-size: 20px;
             text-align: left;
-            padding-left: 100px;
+
         }
 
         .first {
             padding-left: 80px
         }
+        .create-btn {
+    background-color: #478ac9;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    height: 40px;
+    margin-top: 15px;
+}
+
+.create-btn:hover {
+    background-color: #478ac9d3;
+    cursor: pointer;
+}
+
+.edit {
+
+    border: none;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+.edit:hover {
+
+    cursor: pointer;
+}
+
+.close {
+
+    font-size: 16px;
+    border-radius: 10px;
+
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #000;
+  width: 200px;
+}
+tr {
+    display: flex;
+}
+td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.saven:hover {
+    cursor: pointer;
+}
+
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -38,6 +114,8 @@
     <title>Главная</title>
     <link rel="stylesheet" href="static/main.css" media="screen">
     <link rel="stylesheet" href="static/nicepage.css" media="screen">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <script class="u-script" type="text/javascript" src="static/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="static/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 5.2.4, nicepage.com">
@@ -71,80 +149,84 @@
     <div class="u-clearfix u-sheet u-sheet-1">
         <img class="u-image u-image-contain u-image-default u-image-1" src="static/img/2560px-Air_Astana_logo.svg.png"
              alt="" data-image-width="2560" data-image-height="625">
-        <div class="pc">
-            <h3 class="pc">Название ордера</h3>
-            <h3 class="pc">Название детали</h3>
-            <h3 class="pc">Количество</h3>
-            <h3 class="pc">Страна поставки</h3>
-            <h3 class="pc">Дата</h3>
-        </div>
         {% for el in a %}
-        <details>
-          <summary class='btn'>
+    <details>
+        <summary class='btn'>
             <div class="hr">
-              <h3 class="u-text u-text-default u-text-6">{{ el.OrderName }}</h3>
-            </div>
-          </summary>
-          <div style="display: flex;">
-            <div class="hr">
-              <h3 class="pp">{{ el.OrderDate }}</h3>
-            </div>
-            <div>
-                <div style="display: block;">
-                    {% for detail in el.Details.all %}
-                
-                    <div class="content_wrapper">
-                        <div class="hr">
-                            <h3 class="pp" id="b{{ detail.pk }}">{{ detail.DetailName }}</h3>
-                            <h3 class="pp" id="ba{{ detail.pk }}">{{ detail.Count }}</h3>
-                            <h3 class="pp" style="margin-right: 10px;" id="ban{{ detail.pk }}">{{ detail.DeliveryCountry }}</h3>
-                    
-                            <button type="button" style="height: 65px" class="edit" onclick="editDetail({{ detail.pk }})" id="editBtn{{ detail.pk }}">
-                            <span aria-hidden="true">&equiv;</span>
-                            </button>
-                    
-                            <button type="button" class="close" onClick="deleteDetail({{ detail.pk }})" id="deleteBtn{{ detail.pk }}">
-                            <span aria-hidden="true">&nbsp;&times;</span>
-                            </button>
-                        </div>
-                    
-                        <div id="editForm{{ detail.pk }}" style="display: none;">
-                            <form method="POST" action="/order/{{ detail.pk }}/">  <!-- Замените '/edit-detail/{{ detail.pk }}/' на ваш URL-адрес обработки редактирования детали -->
-                                {% csrf_token %}
-                                <input type="text" name="detail_name" value="{{ detail.DetailName }}">
-                                <input type="text" name="count" value="{{ detail.Count }}">
-                                <input type="text" name="delivery_country" value="{{ detail.DeliveryCountry }}">
-                                <button type="submit">Сохранить</button>
-                            </form>          
-                        </div>
-                    </div>
-                
-                    {% endfor %}
-                </div>
-                <button type="button" style="height: 65px" class="edit" onclick="createOrder({{ order.pk }})" id="createBtn{{ order.pk }}">
+                <h3 style="margin-right: 800px;" class="u-text u-text-default u-text-6">{{ el.OrderName }}</h3>
+                <button type="button" class="create-btn" onclick="createOrder({{ el.pk }})" id="createBtn{{ el.pk }}">
                     <span class="create-icon">+</span>
                 </button>
-                <div style="display:block; padding: 15px;" id="forma{{ order.pk }}" >
-                    <form action="order" method="POST"  novalidate >
-                        {% csrf_token %}
-                        <div style="display: flex;"> <div style="margin-left: 230px;display: flex; align-items: center; justify-content: center;">
-                            {{ form.DetailName }}</div>
-                        <div style="margin-left: 100px;display: flex; align-items: center; justify-content: center;">
-                            {{ form.Count }}</div>
-                        <div style="margin-left: 100px; margin-right: 10px;display: flex; align-items: center; justify-content: center;">
-                            {{ form.DeliveryCountry }}</div>
-                            <input type="hidden" name="OrderName" value="{{ el.OrderName }}">
-                            <input type="hidden" name="OrderDate" value="{{ el.OrderDate|date:'Y-m-d' }}" id="id_OrderDate">
-
-                            <button type="submit" class="u-btn u-btn-submit u-button-style" style=" display: flex; align-items: center; justify-content: center;"><span class="tick-icon">&#10004;</span></button>
-                        </div>
-                        <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-                    </form>
-                </div>
             </div>
-          </div>
-        </details>
-        {% endfor %}
+        </summary>
+        <div style="display: flex;">
+            <div class="r">
+                <h3 class="pp">{{ el.OrderDate }}</h3>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Detail Name</th>
+                            <th>Count</th>
+                            <th>Delivery Country</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for detail in el.Details.all %}
+                            <tr>
+                                <td id="b{{ detail.pk }}">{{ detail.DetailName }}</td>
+                                <td id="ba{{ detail.pk }}">{{ detail.Count }}</td>
+                                <td id="ban{{ detail.pk }}">{{ detail.DeliveryCountry }}</td>
+                                <td>
+                                    <a class="edit" title="Edit" data-toggle="tooltip" id="editBtn{{ detail.pk }}" onclick="editDetail({{ detail.pk }})">
+                                        <i class="material-icons">&#xE254;</i>
+                                    </a>
+                                    <a class="close" onClick="deleteDetail({{ detail.pk }})" id="deleteBtn{{ detail.pk }}" title="Delete" data-toggle="tooltip">
+                                        <i class="material-icons">&#xE872;</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr id="editForm{{ detail.pk }}" style="display: none;">
+                                    <form method="POST" action="/order/{{ detail.pk }}/" class="edit-form" style="display: flex;">
+                                        {% csrf_token %}
+                                        <td><input type="text" name="detail_name" value="{{ detail.DetailName }}"></td>
+                                        <td><input type="text" name="count" value="{{ detail.Count }}"></td>
+                                        <td><input type="text" name="delivery_country" value="{{ detail.DeliveryCountry }}"></td>
+                                        <td><button type="submit">Save</button></td>                                                                         
+                                    </form>
+                            </tr>
+                        {% endfor %}
+                        <tr style="display:none; "  id="forma{{ el.pk }}">
+                                    <form action="order" method="POST" novalidate style="display: flex;">
+                                        {% csrf_token %}
+                                        <td><div >
+                                            {{ form.DetailName }}
+                                        </div></td>
+                                        <td><div >
+                                            {{ form.Count }}
+                                        </div></td>
+                                        <td><div >
+                                            {{ form.DeliveryCountry }}
+                                        </div><input type="hidden" name="OrderName" value="{{ el.OrderName }}">
+                                        <input type="hidden" name="OrderDate" value="{{ el.OrderDate|date:'Y-m-d' }}" id="id_OrderDate"></td>
+                                        <td><a class="saven" title="save" data-toggle="tooltip">
+                                            <span class="tick-icon">&#10004;</span>
+                                        </a>
+                                        </td>
+                                            
+                                    </form>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </details>
+{% endfor %}
+
+
 
         <a href="/" class="u-btn u-btn-submit u-button-style">Выйти</a>
 
@@ -174,8 +256,8 @@ function editDetail(detailId) {
   document.getElementById('deleteBtn' + detailId).style.display = 'none';
 
   // Отобразить форму редактирования
-  document.getElementById('editForm' + detailId).style.display = 'block';
-  document.getElementById('forma' + detailId).style.display = 'block';
+  document.getElementById('editForm' + detailId).style.display = 'flex';
+  document.getElementById('forma' + detailId).style.display = 'flex';
 }
 
 function saveDetail(detailId) {
@@ -204,10 +286,15 @@ function saveDetail(detailId) {
 
 
 function createOrder(orderId) {
-        var formId = "forma" + orderId;
-        var form = document.getElementById(formId);
-        form.style.display = "block";
+    var formId = "forma" + orderId;
+    var form = document.getElementById(formId);
+    if (form.style.display === "flex") {
+        form.style.display = "none";
+    } else {
+        form.style.display = "flex";
     }
+}
+
 
     function getCookie(name) {
         let cookieValue = null;

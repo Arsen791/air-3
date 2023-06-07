@@ -93,7 +93,7 @@
                         <div class="content_wrapper">
                             <div>
                                 <input id="{{ detail.pk }}" type="checkbox" value="{{ detail.pk }}" name="checkbox_service"
-                                    class="checkbox" {% if detail.pk in checkbox_service_values %}checked{% endif %}>
+                                    class="checkbox">
                                 <label for="{{ detail.pk }}" class="u-label">{{ detail.DetailName }} | количество:
                                     {{ detail.Count }} | из: {{ detail.DeliveryCountry }}</label>
                                 <label for="{{ detail.pk }}">
@@ -114,7 +114,6 @@
                 </div>
                 <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
             </form>
-            
             <a href="/" class="u-btn u-btn-submit u-button-style">Выйти</a>
 
         </div>
@@ -127,6 +126,8 @@
         <p class="u-small-text u-text u-text-variant u-text-1">Team NIS for Air Astana</p>
     </div>
 </footer>
+
+
 
 </body>
 </html>

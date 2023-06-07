@@ -121,14 +121,13 @@ def change_order_detail(request, pk):
 
 
 def crship(request):
-    checkbox_service_values = []
-    detail_counts_values = []
-
     filter_value = request.GET.get('filter')
-    orders = Orders.objects.all()
+    all_orders = Orders.objects.all()
+    orders = all_orders
 
     if filter_value:
         orders = orders.filter(OrderName=filter_value)
+    print(orders)
 
     if request.method == 'POST':
         form = ShippingForm(request.POST)
@@ -136,14 +135,12 @@ def crship(request):
             name = form.cleaned_data['ShippingName']
             shipping = Shipping(ShippingName=name)
             shipping.save()
-
+            selected_details = request.POST.getlist("selected_details")
             details = request.POST.getlist("checkbox_service")
             details = [int(i) for i in details]
-            details_count = request.POST.getlist('detail_counts')
-            checkbox_service_values = request.POST.getlist('checkbox_service')
-            detail_counts_values = request.POST.getlist('detail_counts')
+            detail_counts = request.POST.getlist("detail_counts")
 
-            for detail_id, detail_count in zip(details, details_count):
+            for detail_id, detail_count in zip(details, detail_counts):
                 try:
                     detail = Details.objects.get(pk=detail_id)
                     detail.Count -= int(detail_count)
@@ -160,19 +157,25 @@ def crship(request):
                     # Обработка случая, когда детали не найдены
                     pass
 
+            # Сохраняем выбранные значения в сеансе
+            request.session['selected_details'] = selected_details
+            request.session['detail_counts'] = detail_counts
+
             return redirect('shiplist')
     else:
+        selected_details = request.session.get('selected_details', [])
+        detail_counts = request.session.get('detail_counts', [])
         form = ShippingForm()
 
     context = {
         'form': form,
+        'all_orders': all_orders,
         'orders': orders,
         'filter_value': filter_value,
-        'checkbox_service_values': checkbox_service_values,
-        'detail_counts_values': detail_counts_values,
+        'selected_details': selected_details,
+        'detail_counts': detail_counts,
     }
     return render(request, 'main/crship.html', context)
-
 
 
 
