@@ -69,51 +69,56 @@
                  src="static/img/2560px-Air_Astana_logo.svg.png" alt="" data-image-width="2560" data-image-height="625">
         </a>
         <div class="u-form u-form-1">
-            <form id="filter-form" method="GET" action="crship">
-                {% csrf_token %}
-                <label for="filter">Фильтр:</label>
-                <input type="number" id="filter" name="filter">
-                <button type="submit">Применить</button>
-            </form>
-            <form method="post" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;">
-                {% csrf_token %}
-                <div class="u-form-group u-form-name u-label-none u-form-group-1">
-                    <label for="shipping-name" class="u-label">Name</label>
-                    ID Шипинга
-                    {{ form.ShippingName }}
-                </div>
+
+            <label for="filter">Фильтр:</label>
+            <input type="number" id="filter" name="filter">
+            <button type="submit" onclick="applyFilter()">Применить</button>
             
-                <div class="u-form-date u-form-group u-label-none u-form-group-5">
-                    {% for order in orders %}
-                    <summary class='btn'>
-                        <h4>{{ order.OrderName }}</h4>
-                    </summary>
-                    <details>
-                        {% for detail in order.Details.all %}
-                        <div class="content_wrapper">
-                            <div>
-                                <input id="{{ detail.pk }}" type="checkbox" value="{{ detail.pk }}" name="checkbox_service"
-                                    class="checkbox">
-                                <label for="{{ detail.pk }}" class="u-label">{{ detail.DetailName }} | количество:
-                                    {{ detail.Count }} | из: {{ detail.DeliveryCountry }}</label>
-                                <label for="{{ detail.pk }}">
-                                    Добавить:
-                                    <input name="detail_counts" class="u-border-1 u-border-grey-30 u-input-rectangle"
-                                        style="width: 50px" placeholder="" id="detail-count-{{ detail.pk }}" min="0"
-                                        max="{{ detail.Count }}" value="1" step="1" type="number">
-                                </label>
-                            </div>
+            <div >
+                <form method="post" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;">
+                    {% csrf_token %}
+                    <div class="u-form-group u-form-name u-label-none u-form-group-1">
+                        <label for="shipping-name" class="u-label">Name</label>
+                        ID Шипинга
+                        {{ form.ShippingName }}
+                    </div>
+            
+                    <div class="u-form-date u-form-group u-label-none u-form-group-5">
+                        {% for order in orders %}
+                        <div id="edit{{ order.OrderName }}" style="display: block;">
+                            <summary class='btn'>
+                                <h4>{{ order.OrderName }}</h4>
+                            </summary>
+                            <details>
+                                {% for detail in order.Details.all %}
+                                <div class="content_wrapper">
+                                    <div>
+                                        <input id="{{ detail.pk }}" type="checkbox" value="{{ detail.pk }}" name="checkbox_service"
+                                            class="checkbox">
+                                        <label for="{{ detail.pk }}" class="u-label">{{ detail.DetailName }} | количество:
+                                            {{ detail.Count }} | из: {{ detail.DeliveryCountry }}</label>
+                                        <label for="{{ detail.pk }}">
+                                            Добавить:
+                                            <input name="detail_counts" class="u-border-1 u-border-grey-30 u-input-rectangle"
+                                                style="width: 50px" placeholder="" id="detail-count-{{ detail.pk }}" min="0"
+                                                max="{{ detail.Count }}" value="1" step="1" type="number">
+                                        </label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </details>
                         </div>
+                
                         {% endfor %}
-                    </details>
-                    {% endfor %}
-                </div>
+                    </div>
             
-                <div class="u-align-left u-form-group u-form-submit u-form-group-6">
-                    <button type="submit" class="u-btn u-btn-submit u-button-style">Создать</button>
-                </div>
-                <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-            </form>
+                    <div class="u-align-left u-form-group u-form-submit u-form-group-6">
+                        <button type="submit" class="u-btn u-btn-submit u-button-style">Создать</button>
+                    </div>
+                    <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
+                </form>
+            </div>
+            
             <a href="/" class="u-btn u-btn-submit u-button-style">Выйти</a>
 
         </div>
@@ -127,7 +132,27 @@
     </div>
 </footer>
 
+<script>
+    function applyFilter(OrderName) {
+        var OrderName = document.getElementById('filter').value;
 
+
+        var orders = document.querySelectorAll('[id^="edit"]');
+    
+    for (var i = 0; i < orders.length; i++) {
+        var order = orders[i];
+        var currentOrderName = order.id.substring(4);
+        
+        if (currentOrderName === OrderName) {
+            order.style.display = 'block';
+        } else {
+            order.style.display = 'none';
+        }
+    }
+        }
+    
+
+</script>
 
 </body>
 </html>

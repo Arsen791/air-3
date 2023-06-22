@@ -53,7 +53,30 @@
     height: 40px;
     margin-top: 15px;
 }
+.create-btn{
+    position: relative;
+}
 
+.create-btn::after {
+        content: attr(title);
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .create-btn:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
 .create-btn:hover {
     background-color: #478ac9d3;
     cursor: pointer;
@@ -66,7 +89,32 @@
     border-radius: 10px;
     margin-top: 15px;
     margin-right: 5px;
+    position: relative;
+    
 }
+
+    .edit::after {
+        content: attr(title);
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .edit:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
 
 .edit:hover {
 
@@ -80,7 +128,29 @@
 
     margin-top: 15px;
     margin-right: 5px;
+    position: relative;
 }
+
+.close::after {
+        content: attr(title);
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .close:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
 
 .close:hover {
     cursor: pointer;
@@ -154,7 +224,7 @@ td {
         <summary class='btn'>
             <div class="hr">
                 <h3 style="margin-right: 800px;" class="u-text u-text-default u-text-6">{{ el.OrderName }}</h3>
-                <button type="button" class="create-btn" onclick="createOrder({{ el.pk }})" id="createBtn{{ el.pk }}">
+                <button type="button" class="create-btn" title="Add Detail" onclick="createOrder({{ el.pk }})" id="createBtn{{ el.pk }}">
                     <span class="create-icon">+</span>
                 </button>
             </div>
@@ -211,9 +281,9 @@ td {
                                             {{ form.DeliveryCountry }}
                                         </div><input type="hidden" name="OrderName" value="{{ el.OrderName }}">
                                         <input type="hidden" name="OrderDate" value="{{ el.OrderDate|date:'Y-m-d' }}" id="id_OrderDate"></td>
-                                        <td><a class="saven" title="save" data-toggle="tooltip">
+                                        <td><button type="submit" class="u-btn u-btn-submit u-button-style">
                                             <span class="tick-icon">&#10004;</span>
-                                        </a>
+                                        </button>
                                         </td>
                                             
                                     </form>

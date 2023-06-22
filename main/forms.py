@@ -4,45 +4,37 @@ from django.core.validators import MinValueValidator
 from .models import ShipToAddress,PickupAddress, Airports
 
 
-class ContractsForm(forms.Form):
-    supplier_code = forms.CharField(required=True,widget=forms.TextInput(attrs={'class': 'contr'}))
-    reg_num = forms.CharField(required=True,widget=forms.TextInput(attrs={'class': 'contr'}))
-    pot_num = forms.CharField(required=True,widget=forms.TextInput(attrs={'class': 'contr'}))
 
 class ShipToAddressForm(forms.ModelForm):
     class Meta:
         model = ShipToAddress
-        fields = ['dictionaries', 'supplier_code', 'country', 'city', 'street', 'number', 'phone', 'contact_person', 'email', 'airport']
+        fields = [ 'supplier_code', 'country', 'city', 'street', 'number', 'phone', 'contact_person', 'email', 'airport']
 
 class PickupAddressForm(forms.ModelForm):
     class Meta:
         model = PickupAddress
-        fields = ['dictionaries', 'supplier_code', 'country', 'city', 'street', 'number', 'phone', 'contact_person', 'email', 'airport']
+        fields = [ 'supplier_code', 'country', 'city', 'street', 'number', 'phone', 'contact_person', 'email']
 
 class AirportsForm(forms.ModelForm):
     class Meta:
         model = Airports
-        fields = ['dictionaries', 'code', 'airport_name', 'type']
+        fields = [ 'code', 'airport_name', 'type']
 
 
 class OrdersForm(forms.Form):
     OrderName = forms.IntegerField(widget=forms.NumberInput(attrs={
-
         'placeholder': '',
         'id': 'id_OrderName',
         'min': '1',
         'value': '1',
         'step': '1',
- 
     }))
     DetailName = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
-
         'placeholder': '',
         'id': 'id_DetailName',
         'style': 'width: 100px',
     }))
     Count = forms.IntegerField(widget=forms.NumberInput(attrs={
-
         'placeholder': '',
         'id': 'id_Count',
         'min': '1',
@@ -51,7 +43,6 @@ class OrdersForm(forms.Form):
         'style': 'width: 50px',
     }))
     DeliveryCountry = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
-
         'placeholder': '',
         'id': 'id_DeliveryCountry',
         'style': 'width: 100px',
@@ -68,8 +59,71 @@ class OrdersForm(forms.Form):
             }
         ),
         label="",
-
     )
+
+    # Поля из PickupAddressForm
+    supplier_code = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': '',
+        'id': 'id_supplier_code',
+        'style': 'width: 100px',
+    }))
+    country = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': '',
+        'id': 'id_country',
+        'style': 'width: 100px',
+    }))
+    city = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': '',
+        'id': 'id_city',
+        'style': 'width: 100px',
+    }))
+    street = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': '',
+        'id': 'id_street',
+        'style': 'width: 100px',
+    }))
+    number = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': '',
+        'id': 'id_number',
+
+        'style': 'width: 100px',
+    }))
+    phone = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': '',
+        'id': 'id_phone',
+        'style': 'width: 100px',
+    }))
+    contact_person = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': '',
+        'id': 'id_contact_person',
+        'style': 'width: 100px',
+    }))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'placeholder': '',
+        'id': 'id_email',
+        'style': 'width: 100px',
+    }))
+
+    # Поля из AirportsForm
+    code = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': '',
+        'id': 'id_code',
+        'style': 'width: 100px',
+    }))
+    airport_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': '',
+        'id': 'id_airport_name',
+        'style': 'width: 100px',
+    }))
+    TYPE_CHOICES = [
+    ('INT', 'Международные'),
+    ('EAEU', 'Аэропорты стран Таможенного союза'),
+    ('LOCAL', 'Внутренние аэропорты'),
+]
+    type = forms.ChoiceField(choices=TYPE_CHOICES, widget=forms.Select(attrs={
+        'id': 'id_type',
+        'style': 'width: 100px',
+    }))
 
 
 

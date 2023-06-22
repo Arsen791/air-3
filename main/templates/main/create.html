@@ -97,29 +97,27 @@ th, td {
                  src="static/img/2560px-Air_Astana_logo.svg.png" alt="" data-image-width="2560" data-image-height="625">
         </a>
         <div class="u-form u-form-1">
-            <form method="post" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px; display: block;" >
+            <form method="post" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px; display: block;">
                 {% csrf_token %}
                 <table class="table-container">
-                    <tr>
-                        <td >
+                    <tr style="display: none;">
+                        <td>
                             ID ордера
                         </td>
                         <td>
-                            {{ form.OrderName }}
+                            <input type="text" name="OrderName" id="id_OrderName" readonly>
                         </td>
                     </tr>
                     <tr>
-                        <td >
+                        <td>
                             Введите дату прибытия
-
                         </td>
                         <td>
                             {{ form.OrderDate }}
                         </td>
                     </tr>
                     <tr>
-                        <td >
-                            
+                        <td>
                             Название детали
                         </td>
                         <td>
@@ -127,8 +125,7 @@ th, td {
                         </td>
                     </tr>
                     <tr>
-                        <td >
-                            
+                        <td>
                             Количества
                         </td>
                         <td>
@@ -136,19 +133,104 @@ th, td {
                         </td>
                     </tr>
                     <tr>
-                        <td >
-  
+                        <td>
                             Страна поставки
                         </td>
                         <td>
                             {{ form.DeliveryCountry }}
                         </td>
                     </tr>
-
-
+                    <tr>
+                        <td>
+                            Код аэропорта
+                        </td>
+                        <td>
+                            {{ form.code }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Название аэропорта
+                        </td>
+                        <td>
+                            {{ form.airport_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Тип аэропорта
+                        </td>
+                        <td>
+                            {{ form.type }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Код поставки
+                        </td>
+                        <td>
+                            {{ form.supplier_code }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Страна поставки
+                        </td>
+                        <td>
+                            {{ form.country }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Город поставки
+                        </td>
+                        <td>
+                            {{ form.city }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Улица поставки
+                        </td>
+                        <td>
+                            {{ form.street }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Номер поставки
+                        </td>
+                        <td>
+                            {{ form.number }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Телефон поставки
+                        </td>
+                        <td>
+                            {{ form.phone }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Контактное лицо поставки
+                        </td>
+                        <td>
+                            {{ form.contact_person }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email поставки
+                        </td>
+                        <td>
+                            {{ form.email }}
+                        </td>
+                    </tr>
                 </table>
                 <div>
-                    <button type="submit" class="u-btn u-btn-submit u-button-style">
+                    <button type="submit" onclick="getLastOrderName(event)" class="u-btn u-btn-submit u-button-style">
                         Создать
                     </button>
                 </div>
@@ -167,6 +249,31 @@ th, td {
         <p class="u-small-text u-text u-text-variant u-text-1">Team NIS for Air Astana</p>
     </div>
 </footer>
+
+<script>
+
+function getLastOrderName(event) {
+    event.preventDefault();
+    $.ajax({
+        url: '/get_last_order_name/',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            var lastOrderName = response.last_order_name;
+            var orderNameField = document.getElementById("id_OrderName");
+            lastOrderName++;
+            orderNameField.value = lastOrderName;
+            // Явная отправка формы
+            event.target.form.submit();
+        },
+        error: function(xhr, errmsg, err) {
+            console.log(errmsg);
+        }
+    });
+}
+
+
+</script>
 
 </body>
 </html>
