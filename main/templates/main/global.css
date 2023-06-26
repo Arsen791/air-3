@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+.popup-overlay {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0;
+}
+
+:root {
+  /* fonts */
+  --p-16b: "PT Sans";
+  --font-inter: Inter;
+
+  /* font sizes */
+  --font-size-mini: 15px;
+  --font-size-xl: 20px;
+  --p-16b-size: 16px;
+  --font-size-5xl: 24px;
+  --font-size-13xl: 32px;
+  --heading-40b-size: 40px;
+  --other-13b-ttu-ls10-size: 13px;
+  --p-14r-size: 14px;
+  --heading-19b-size: 19px;
+
+  /* Colors */
+  --white: #fff;
+  --black: #333;
+  --color-darkslategray-100: rgba(51, 51, 51, 0.2);
+  --color-darkslategray-200: rgba(51, 51, 51, 0.5);
+  --purple: #3d348b;
+  --my-blue: #253168;
+  --color-tan: #a08655;
+  --color-black: #000;
+  --color-lightslategray: #8692a6;
+  --color-ghostwhite: #f5f9ff;
+  --blue: #5db7de;
+
+  /* Gaps */
+  --gap-119xl: 138px;
+  --gap-3xs: 10px;
+  --gap-56xl: 75px;
+  --gap-xl: 20px;
+  --gap-41xl: 60px;
+  --gap-mini: 15px;
+  --gap-21xl: 40px;
+  --gap-106xl: 125px;
+  --gap-15xl: 34px;
+  --gap-5xl: 24px;
+  --gap-99xl: 118px;
+  --gap-3xl: 22px;
+  --gap-6xl: 25px;
+  --gap-xs: 12px;
+
+  /* Paddings */
+  --padding-21xl: 40px;
+  --padding-mini: 15px;
+  --padding-41xl: 60px;
+  --padding-330xl: 349px;
+  --padding-5xs: 8px;
+  --padding-3xs: 10px;
+  --padding-11xl: 30px;
+  --padding-16xl: 35px;
+
+  /* border radiuses */
+  --br-7xs: 6px;
+  --br-8xs: 5px;
+  --br-3xs: 10px;
+  --br-xl: 20px;
+}

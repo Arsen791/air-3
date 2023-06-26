@@ -1,0 +1,219 @@
+.first-screen-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1132px;
+  object-fit: cover;
+}
+.techsupply,
+.trax-erp {
+  position: relative;
+  line-height: 140%;
+}
+.techsupply {
+  align-self: stretch;
+}
+.trax-erp {
+  font-size: var(--font-size-5xl);
+  display: inline-block;
+  width: 526px;
+}
+.techsupply-parent {
+  width: 634px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-21xl);
+}
+.b2 {
+  position: relative;
+  letter-spacing: 0.1em;
+  line-height: 140%;
+  text-transform: uppercase;
+}
+.button-child {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+.button,
+.frame-parent {
+  display: flex;
+  justify-content: flex-start;
+}
+.button {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-mini);
+  font-size: var(--p-16b-size);
+}
+.frame-parent {
+  position: absolute;
+  top: 177px;
+  left: 173px;
+  width: 639px;
+  height: 507px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-41xl);
+}
+.first-screen-wrapper,
+.main-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1132px;
+}
+.main-inner {
+  top: 134px;
+}
+.logo-icon1 {
+  position: relative;
+  width: 210px;
+  height: 54px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.admin2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 140%;
+}
+.dictionary1,
+.export1,
+.help1,
+.import1,
+.reports1 {
+  position: absolute;
+  top: 0;
+  left: 95px;
+  line-height: 140%;
+}
+.export1,
+.help1,
+.import1,
+.reports1 {
+  left: 223px;
+}
+.export1,
+.help1,
+.reports1 {
+  left: 321px;
+}
+.help1,
+.reports1 {
+  left: 418px;
+}
+.help1 {
+  left: 524px;
+}
+.div3 {
+  position: relative;
+  width: 565px;
+  height: 28px;
+}
+.mdiaccount-circle1 {
+  position: absolute;
+  top: 8px;
+  left: 81px;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+.ru1 {
+  position: relative;
+  line-height: 140%;
+}
+.material-symbolskeyboard-arro-icon1 {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.div4 {
+  position: absolute;
+  top: 16px;
+  left: 301px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+}
+.admin3,
+.div5 {
+  position: absolute;
+  line-height: 140%;
+}
+.div5 {
+  top: 0;
+  left: 65.58px;
+  opacity: 0.9;
+}
+.admin3 {
+  top: 25px;
+  left: 66px;
+  font-size: var(--font-size-mini);
+  color: var(--black);
+}
+.vector-icon1 {
+  position: absolute;
+  height: 100%;
+  width: 25.63%;
+  top: 0;
+  right: 74.37%;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.group {
+  position: absolute;
+  top: 5px;
+  left: 541px;
+  width: 175.58px;
+  height: 45px;
+  font-size: var(--font-size-xl);
+  color: var(--my-blue);
+}
+.mdiaccount-circle-group {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  font-size: var(--p-16b-size);
+}
+.header1,
+.main {
+  background-color: var(--white);
+}
+.header1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-21xl) 0 var(--padding-21xl) var(--padding-mini);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-119xl);
+  font-size: var(--font-size-xl);
+  color: var(--black);
+}
+.main {
+  position: relative;
+  width: 100%;
+  height: 893px;
+  overflow: hidden;
+  text-align: left;
+  font-size: 55px;
+  color: var(--white);
+  font-family: var(--p-16b);
+}

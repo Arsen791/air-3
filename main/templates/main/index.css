@@ -1,0 +1,186 @@
+.image-1-icon {
+  position: absolute;
+  top: 2418px;
+  left: 742px;
+  width: 305px;
+  height: 77px;
+  object-fit: cover;
+}
+.image-2-icon {
+  position: relative;
+  width: 151px;
+  height: 38px;
+  object-fit: cover;
+}
+.icbaseline-phone-icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.b {
+  position: relative;
+  line-height: 140%;
+}
+.footer,
+.icbaseline-phone-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--my-blue);
+  width: 1920px;
+  height: 120px;
+  justify-content: center;
+  gap: var(--gap-56xl);
+}
+.logo-icon {
+  position: relative;
+  width: 210px;
+  height: 54px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.admin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 140%;
+}
+.dictionary {
+  left: 95px;
+}
+.dictionary,
+.export,
+.help,
+.import,
+.reports {
+  position: absolute;
+  top: 0;
+  line-height: 140%;
+}
+.import {
+  left: 223px;
+  color: var(--color-tan);
+}
+.export,
+.help,
+.reports {
+  left: 321px;
+}
+.help,
+.reports {
+  left: 418px;
+}
+.help {
+  left: 524px;
+}
+.div {
+  position: relative;
+  width: 565px;
+  height: 28px;
+}
+.mdiaccount-circle {
+  position: absolute;
+  top: 8px;
+  left: 81px;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+.material-symbolskeyboard-arro-icon {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.div1 {
+  position: absolute;
+  top: 16px;
+  left: 301px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+}
+.admin1,
+.div2 {
+  position: absolute;
+  line-height: 140%;
+}
+.div2 {
+  top: 0;
+  left: 65.58px;
+  opacity: 0.9;
+}
+.admin1 {
+  top: 25px;
+  left: 66px;
+  font-size: var(--font-size-mini);
+  color: var(--black);
+}
+.vector-icon {
+  position: absolute;
+  height: 100%;
+  width: 25.63%;
+  top: 0;
+  right: 74.37%;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.parent {
+  position: absolute;
+  top: 5px;
+  left: 541px;
+  width: 175.58px;
+  height: 45px;
+  font-size: var(--font-size-xl);
+  color: var(--my-blue);
+}
+.mdiaccount-circle-parent {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  font-size: var(--p-16b-size);
+}
+.header,
+.waybill {
+  background-color: var(--white);
+}
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-21xl) 0 var(--padding-21xl) var(--padding-mini);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-119xl);
+  font-size: var(--font-size-xl);
+  color: var(--black);
+}
+.waybill {
+  position: relative;
+  width: 100%;
+  height: 892px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--p-16b-size);
+  color: var(--white);
+  font-family: var(--p-16b);
+}

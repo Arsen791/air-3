@@ -1,0 +1,43 @@
+.import-menu-child {
+  position: absolute;
+  top: 10px;
+  left: 42px;
+  border-radius: var(--br-7xs);
+  background-color: var(--white);
+  box-shadow: 0 4px 14px 1px rgba(0, 0, 0, 0.6);
+  width: 271px;
+  height: 197px;
+}
+.request-for-import {
+  position: absolute;
+  top: 32px;
+  left: 62px;
+  cursor: pointer;
+}
+.import-waybill,
+.importtransit-shipping-detail {
+  position: absolute;
+  top: 75px;
+  left: 62px;
+  cursor: pointer;
+}
+.importtransit-shipping-detail {
+  top: 118px;
+}
+.export-reports {
+  position: absolute;
+  top: 161px;
+  left: 62px;
+}
+.import-menu {
+  position: relative;
+  width: 335px;
+  height: 240px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  text-align: left;
+  font-size: var(--p-16b-size);
+  color: var(--my-blue);
+  font-family: var(--p-16b);
+}

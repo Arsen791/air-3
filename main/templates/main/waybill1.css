@@ -1,0 +1,238 @@
+.image-1-icon1 {
+  position: absolute;
+  top: 2418px;
+  left: 742px;
+  width: 305px;
+  height: 77px;
+  object-fit: cover;
+}
+.image-2-icon1 {
+  position: relative;
+  width: 151px;
+  height: 38px;
+  object-fit: cover;
+}
+.icbaseline-phone-icon1 {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.b3 {
+  position: relative;
+  line-height: 140%;
+}
+.footer1,
+.icbaseline-phone-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+}
+.footer1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--my-blue);
+  width: 1920px;
+  height: 120px;
+  justify-content: center;
+  gap: var(--gap-56xl);
+  color: var(--white);
+}
+.b5 {
+  position: relative;
+  letter-spacing: 0.1em;
+  line-height: 140%;
+  text-transform: uppercase;
+}
+.button-item {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+.button1 {
+  position: absolute;
+  top: 556px;
+  left: 884px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-mini);
+  cursor: pointer;
+  font-size: var(--font-size-13xl);
+  color: var(--my-blue);
+}
+.enter-waybill-number {
+  align-self: stretch;
+  position: relative;
+  letter-spacing: 0.1em;
+  line-height: 140%;
+  text-transform: uppercase;
+}
+.frame-child {
+  position: relative;
+  border-radius: 6.72px;
+  border: 1.3px solid var(--color-darkslategray-200);
+  box-sizing: border-box;
+  width: 559px;
+  height: 47.03px;
+}
+.enter-waybill-number-parent {
+  position: absolute;
+  top: 298px;
+  left: 680px;
+  height: 172px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 26.88px;
+  text-align: center;
+  font-size: 21.5px;
+}
+.logo-icon2 {
+  position: relative;
+  width: 210px;
+  height: 54px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.admin4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 140%;
+}
+.dictionary2 {
+  left: 95px;
+}
+.dictionary2,
+.export2,
+.help2,
+.import2,
+.reports2 {
+  position: absolute;
+  top: 0;
+  line-height: 140%;
+}
+.import2 {
+  left: 223px;
+  color: var(--color-tan);
+}
+.export2,
+.help2,
+.reports2 {
+  left: 321px;
+}
+.help2,
+.reports2 {
+  left: 418px;
+}
+.help2 {
+  left: 524px;
+}
+.div6 {
+  position: relative;
+  width: 565px;
+  height: 28px;
+}
+.mdiaccount-circle2 {
+  position: absolute;
+  top: 8px;
+  left: 81px;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+.material-symbolskeyboard-arro-icon2 {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.div7 {
+  position: absolute;
+  top: 16px;
+  left: 301px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+}
+.admin5,
+.div8 {
+  position: absolute;
+  line-height: 140%;
+}
+.div8 {
+  top: 0;
+  left: 65.58px;
+  opacity: 0.9;
+}
+.admin5 {
+  top: 25px;
+  left: 66px;
+  font-size: var(--font-size-mini);
+  color: var(--black);
+}
+.vector-icon2 {
+  position: absolute;
+  height: 100%;
+  width: 25.63%;
+  top: 0;
+  right: 74.37%;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.container {
+  position: absolute;
+  top: 5px;
+  left: 541px;
+  width: 175.58px;
+  height: 45px;
+  font-size: var(--font-size-xl);
+  color: var(--my-blue);
+}
+.mdiaccount-circle-container {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  font-size: var(--p-16b-size);
+}
+.header2,
+.waybill1 {
+  background-color: var(--white);
+}
+.header2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-21xl) 0 var(--padding-21xl) var(--padding-mini);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-119xl);
+  font-size: var(--font-size-xl);
+}
+.waybill1 {
+  position: relative;
+  width: 100%;
+  height: 892px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--p-16b-size);
+  color: var(--black);
+  font-family: var(--p-16b);
+}

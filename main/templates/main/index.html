@@ -1,63 +1,96 @@
-<!doctype html>
-<html lang=ru>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=PT Sans:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="waybill">
+      <img class="image-1-icon" alt="" src="./public/image-1@2x.png" />
 
-{% load static %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Главная страница</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/main.css" media="screen">
-    <link rel="stylesheet" href="static/nicepage.css" media="screen">
-    <script class="u-script" type="text/javascript" src="static/jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="static/nicepage.js" defer=""></script>
-</head>
-<body>
-<header class="u-clearfix u-container-align-center u-header u-palette-1-base u-sticky u-sticky-f6b6 u-header" id="sec-d045"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
-          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</symbol>
-</defs></svg>
-            </a>
-          </div>
-          <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="create">Добавление ордера</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="order">Список ордеров</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="crship">Добавление шипинга</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="shiplist">Список шипингов</a>
-</li></ul>
-          </div>
-          <div class="u-custom-menu u-nav-container-collapse">
-            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-              <div class="u-sidenav-overflow">
-                <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/Главная.html">Добавление ордера</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/О-нас.html">Список ордеров</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/Контакты.html">Добавление шиппига</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link">Список шипингов</a>
-</li></ul>
-              </div>
-            </div>
-            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-          </div>
-        </nav>
-      </div></header>
-    <section class="u-clearfix u-section-1" id="sec-a943">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <img class="u-image u-image-contain u-image-default u-image-1" src="static/img/2560px-Air_Astana_logo.svg.png" alt="" data-image-width="2560" data-image-height="625">
-        <a href="create" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">Добавить ордер</a>
-        <a href="order" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">Список ордеров</a>
-        <a href="crship" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">Добавление шиппингов</a>
-        <a href="shiplist" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">Список шипингов</a>
+      <div class="footer">
+        <img class="image-2-icon" alt="" src="./public/image-2@2x.png" />
+
+        <div class="icbaseline-phone-parent">
+          <img
+            class="icbaseline-phone-icon"
+            alt=""
+            src="./public/icbaselinephone.svg"
+          />
+
+          <b class="b">+7 (123) 456-67-89</b>
+        </div>
+        <div class="icbaseline-phone-parent">
+          <img
+            class="icbaseline-phone-icon"
+            alt=""
+            src="./public/carbonlocationfilled.svg"
+          />
+
+          <b class="b">Компания Эйр Астана</b>
+        </div>
+        <div class="icbaseline-phone-parent">
+          <img
+            class="icbaseline-phone-icon"
+            alt=""
+            src="./public/icroundemail.svg"
+          />
+
+          <b class="b">airastana@gmail.com</b>
+        </div>
       </div>
-    </section>
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c230"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">Team NIS for Air Astana</p>
-      </div></footer>
-</body>
+      <div class="header">
+        <img
+          class="logo-icon"
+          alt=""
+          src="./public/logo@2x.png"
+          id="logoImage"
+        />
+
+        <div class="div">
+          <div class="admin">Admin</div>
+          <div class="dictionary">Dictionary</div>
+          <div class="import">Import</div>
+          <div class="export">Export</div>
+          <div class="reports">Reports</div>
+          <div class="help">Help</div>
+        </div>
+        <div class="mdiaccount-circle-parent">
+          <div class="mdiaccount-circle"></div>
+          <div class="div1">
+            <b class="b">RU</b>
+            <img
+              class="material-symbolskeyboard-arro-icon"
+              alt=""
+              src="./public/materialsymbolskeyboardarrowdownrounded.svg"
+            />
+          </div>
+          <div class="parent">
+            <div class="div2">Вася Пупкин</div>
+            <div class="admin1">Admin</div>
+            <img class="vector-icon" alt="" src="./public/vector.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var logoImage = document.getElementById("logoImage");
+      if (logoImage) {
+        logoImage.addEventListener("click", function (e) {
+          window.location.href = "./main.html";
+        });
+      }
+      </script>
+  </body>
 </html>
